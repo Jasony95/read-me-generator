@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const MarkdownIt = require("markdown-it");
 const fs = require('fs');
+const {unlink} = require('node:fs');
 md = new MarkdownIt();
 const { generateMarkdown, renderLicenseBadge, renderLicenseLink, renderLicenseSection } = require('./utils/generateMarkdown');
 const questions = [
@@ -60,7 +61,10 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions).then(data => {
     console.log(data);
-
+    
+    unlink('README.md', (err) => {
+      err ? console.error(err) : console.log('Successfully deleted file.');
+    })
     writeToFile('README.md', generateMarkdown(data));
 
   })
