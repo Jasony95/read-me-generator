@@ -31,7 +31,7 @@ function renderLicenseBadge(license) {
   else if (license === `GNU General Public License v2.0`) {
     return '[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)]'
   }
-  else if (license === `Mozilla Public Licese 2.0`) {
+  else if (license === `Mozilla Public License 2.0`) {
     return '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)]'
   }
   else if (license === `The Unlicense`) {
@@ -91,6 +91,7 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   return `## License
   ${license}
+
   License Link: ${renderLicenseLink(license)}
   `;
 }
@@ -98,9 +99,9 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  # ${data.title}
-  
-  ## Description ${renderLicenseBadge(data.license)}
+  # ${data.title} ${renderLicenseBadge(data.license)}
+
+  ## Description 
   ${data.description}
 
   ## Table of Contents
